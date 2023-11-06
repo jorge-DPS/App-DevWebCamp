@@ -161,3 +161,27 @@
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
         rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
+
+@mixin reset-lista {
+    // para quitar los etilos a los li
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin tags {
+    @include reset-lista;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+
+    > li {
+        background-color: v.$azul;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-size: 1.4rem;
+        color: v.$blanco;
+        font-weight: v.$bold;
+    }
+}

@@ -26,11 +26,12 @@
 
     &__contenedor-icono {
         display: flex;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
 
     &__icono {
-        background-color: v.$gris-claro;
+        background-color: v.$gris-oscuro;
         width: 4rem;
         display: flex;
         align-items: center;
@@ -56,6 +57,25 @@
         &--file {
             border: none;
         }
+
+        &--sociales {
+            @extend .formulario__input;
+            flex: 1;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    &__text {
+        margin-top: 3rem;
+    }
+
+    &__imagen {
+        max-width: 20rem;
+    }
+
+    &__listado {
+        @include m.tags;
     }
 
     &__submit {
