@@ -1,9 +1,19 @@
-@use "base/variables" as v;
-@use "base/mixins" as m;
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
 
+.table-wrapper {
+    overflow-x: auto;
+}
 .table {
     width: 100%;
+    min-width: 100%;
     border-collapse: collapse;
+
+    @include m.tablet {
+        .table {
+            width: 100%;
+        }
+    }
 
     &__thead {
         background-color: v.$gris-oscuro;
