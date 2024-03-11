@@ -1,0 +1,96 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.eventos-registro {
+    @include m.contenedor;
+
+    @include m.tablet {
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+
+    }
+
+    &__listado {
+        @include m.tablet {
+            flex: 0 0 60%;
+        }
+    }
+
+    &__grid {
+        @include m.grid(1, 3rem);
+        @include m.tablet {
+            @include m.grid(2, 3rem);
+        }
+    }
+
+    &__encabezado {
+
+        &--conferencias,
+        &--workshops {
+            white-space: nowrap;
+            @include m.texto-fluido(2rem, 5rem);
+        }
+
+        &--conferencias {
+            color: v.$azul;
+            
+        }
+
+        &--workshops {
+            color: v.$secundario;
+            margin-top: 5rem;
+        }
+    }
+
+    &__fecha {
+        margin:5rem 0 3rem 0;
+    }
+
+}
+
+.registro {
+
+    background-color: v.$gris-claro;
+    padding: 3rem;
+    border-radius: 1rem;
+    @include m.tablet {
+        flex: 0 0 40%;
+        // position: -webkit-sticky;
+        position: sticky;
+        top: 3rem;
+    }
+
+    &__encabezado {
+        margin: 0 0 3rem 0;
+    }
+
+    &__evento {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        &:nth-child(even){
+            background-color: darken($color: v.$gris-claro, $amount: 4);
+        }
+    }
+
+    &__nombre {
+        font-size: 2rem;
+        font-weight: v.$bold;
+        margin: 0;
+
+    }
+
+
+
+    &__eliminar {
+        all: unset;
+        color: v.$rojo;
+        cursor: pointer;
+    }
+}
+
+.swal2-popup{
+    font-size: 1.5rem;
+}

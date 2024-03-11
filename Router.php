@@ -33,6 +33,7 @@ class Router
             call_user_func($fn, $this);
         } else {
             echo "Página No Encontrada o Ruta no válida";
+            // header('Location: /404');
         }
     }
 
@@ -52,7 +53,7 @@ class Router
 
         // utlizar el layout de acuerdo a la URL
         $url_actual = $_SERVER['PATH_INFO'] ?? '/';
-
+        
         if (str_contains($url_actual, '/admin')) {
             // si contiene el admin
             // debuguear(' si lo contiene');

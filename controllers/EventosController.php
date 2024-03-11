@@ -15,6 +15,9 @@ class EventosController
 {
     public static function index(Router $router)
     {
+        if (!es_admin()) {
+            header('Location: /login');
+        }
         $pagina_actual = $_GET['page'];
         $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
 
@@ -47,6 +50,9 @@ class EventosController
 
     public static function crear(Router $router)
     {
+        if (!es_admin()) {
+            header('Location: /login');
+        }
         $alertas = [];
 
         $categorias = Categoria::all('ASC');
@@ -82,6 +88,11 @@ class EventosController
     public static function editar(Router $router)
     {
 
+        if (!es_admin()) {
+            header('Location: /login');
+        }
+
+
         $alertas = [];
         $id = $_GET['id'];
         $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -100,7 +111,11 @@ class EventosController
             header('Location: /admin/eventos');
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+            if (!es_admin()) {
+                header('Location: /login');
+            }
             $evento->sincronizar($_POST);
 
             $alertas = $evento->validar();
@@ -124,10 +139,25 @@ class EventosController
         ]);
     }
 
-    public static function eliminar(Router $router)
+    public static function eliminar()
     {
-        $router->render('admin/eventos/eliminar', [
-            'titulo' => 'Conferencias y Workshops',
-        ]);
+       
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+            if (!es_admin()) {
+                header('Location: /login');
+            }
+            $id = $_POST['id'];
+            $evento = Evento::find($id);
+            if (!isset($evento)) {
+                header('Location: /admin/eventos');
+            }
+
+            $resultado = $evento->eliminar();
+            if ($resultado) {
+                header('Location: /admin/eventos');
+            }
+        }
     }
 }

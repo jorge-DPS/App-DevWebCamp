@@ -181,10 +181,14 @@ class PonentesController
 
     public static function eliminar()
     {
-        if (!es_admin()) {
-            header('Location: /login');
-        }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+
+            if (!es_admin()) {
+                header('Location: /login');
+            }
+            
             $idPonente = $_POST['id'];
 
             $ponente = Ponente::find($idPonente);
